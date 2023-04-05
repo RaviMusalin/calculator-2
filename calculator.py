@@ -1,21 +1,19 @@
-"""CLI application for a prefix-notation calculator."""
+"""CLI application for a prefix-notation calculator.
+
++ : add two numbers
+- : subtract two numbers
+* : multiplie two numbers
+/ : divide two numbers
+sqr : square a number
+cube : cube a number
+pow : takes one number and brings it to the power of another number
+% : calculate remainder of two numbers
+q : quit
+"""
 
 from arithmetic import (add, subtract, multiply, divide, square, cube,
                         power, mod)
 
-
-# Replace this with your code
-# repeat forever:
-#     read input
-#     tokenize input
-#         if the first token is "q":
-#             quit
-#         else:
-#             (decide which math function to call based on first token)
-#             if the first token is 'pow':
-#                   call the power function with the other two tokens
-
-#             (...etc.)
 while True:
     req_calculations = input("Enter your equation: ")
     response_list = req_calculations.split(" ")
@@ -23,8 +21,10 @@ while True:
         break
     else:
         for number in response_list[1:]:
-            response_list[response_list.index(number)] = float(number)
-            
+            try:
+                response_list[response_list.index(number)] = float(number)
+            except:
+                print("Make sure you type a number")
         if response_list[0] == "+":
             print(add(*response_list[1:]))
 
@@ -48,3 +48,6 @@ while True:
 
         elif response_list[0] == "%":
             print(mod(*response_list[1:]))
+
+        else:
+            print("Check your command")
